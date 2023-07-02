@@ -1,8 +1,11 @@
 package trom;
 
 /*
- * Order Class: Not to be confused with Item. Order class is basically a Item with
+ * Class: Order
+ * Not to be confused with Item. Order class is basically a Item with
  * a String attribute for notes. 
+ * @param Item item
+ * @param String Note
  */
 
 public class Order extends Item{ //make this an extension of an item in the future

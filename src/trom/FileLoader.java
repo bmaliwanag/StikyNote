@@ -3,10 +3,12 @@ import java.util.*;
 import java.io.*;
 
 /*
- * FileLoader Class: Reads data from a text file and
+ * Class: FileLoader
+ * Reads data from a text file and
  * creates a vector of Items from that text file.
  * Once finished, the class writes back to the text file
  * with the same Item vector.
+ * @param Vector<Item> list
  */
 
 public class FileLoader {
