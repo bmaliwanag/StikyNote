@@ -3,8 +3,11 @@ import java.util.*;
 
 /*
  * Class: Ticket
- * Ticket contains a vector of Orders and calculates subtotal and grandTotal.
+ * Ticket contains a vector of Orders and calculates subtotal and grandTotal. Identified
+ * by name and/or number.
  * @param Vector<Item> list
+ * @param String name
+ * @param String number
  */
 
 public class Ticket {
