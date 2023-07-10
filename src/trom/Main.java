@@ -12,8 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		Menu initialize = new Menu();
-		
+		Menu initialize = new Menu();	
 		Ticket[] roster = new Ticket[ConfigFile.maxTicketAmount];
 		
 		/*JFrame frame = new JFrame();

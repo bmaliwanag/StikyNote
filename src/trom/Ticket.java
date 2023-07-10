@@ -13,6 +13,8 @@ public class Ticket {
 	private float subTotal = 0.00f;
 	private float taxFee;
 	private float grandTotal;
+	private String name;
+	private String number;
 	private boolean paid = false;
 	private boolean completed = false;
 	
@@ -24,8 +26,10 @@ public class Ticket {
 		this.grandTotal = this.subTotal + this.taxFee;
 	}
 	
-	public Ticket(Vector<Order> input) {
+	public Ticket(Vector<Order> input, String name, String number) {
 		this.list = input;
+		this.name = name;
+		this.number = number;
 		calculateTotals();
 	}
 	
@@ -34,6 +38,8 @@ public class Ticket {
 	public float getGrandTotal() {return grandTotal;}
 	public boolean getPaidStatus() {return paid;}
 	public boolean getCompletedStatus() {return completed;}
+	public String getName() {return name;}
+	public String getNumber() {return number;}
 	
 	public void updateTicket(Vector<Order> input) {
 		this.list = input;
@@ -46,5 +52,13 @@ public class Ticket {
 	
 	public void setCompletedStatus(boolean input) {
 		this.completed = input;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }
