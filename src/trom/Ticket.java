@@ -36,6 +36,7 @@ public class Ticket {
 		calculateTotals();
 	}
 	
+	//getters
 	public float getSubTotal() { return subTotal;}
 	public float gettaxFee() { return taxFee;}
 	public float getGrandTotal() {return grandTotal;}
@@ -44,6 +45,7 @@ public class Ticket {
 	public String getName() {return name;}
 	public String getNumber() {return number;}
 	
+	//setters
 	public void updateTicket(Vector<Order> input) {
 		this.list = input;
 		calculateTotals();
