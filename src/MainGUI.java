@@ -37,7 +37,7 @@ public class MainGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGUI frame = new MainGUI();
+					MainGUI frame = new MainGUI(roster);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,8 @@ public class MainGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainGUI() {
+	public MainGUI(Ticket[] book) {
+		
 		setTitle("StikyNote v1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1184, 710);
@@ -65,16 +66,16 @@ public class MainGUI extends JFrame {
 		contentPane.add(toolBar);
 		
 		tPanel[] thing = new tPanel[ConfigFile.maxTicketAmount];
-		thing[0] = new tPanel(10,40,contentPane);
-		thing[1] = new tPanel(242,40,contentPane);
-		thing[2] = new tPanel(474,40,contentPane);
-		thing[3] = new tPanel(706,40,contentPane);
-		thing[4] = new tPanel(938,40,contentPane);
-		thing[5] = new tPanel(10,308,contentPane);
-		thing[6] = new tPanel(242,308,contentPane);
-		thing[7] = new tPanel(474,308,contentPane);
-		thing[8] = new tPanel(706,308,contentPane);
-		thing[9] = new tPanel(938,308,contentPane);
+		thing[0] = new tPanel(10,40,contentPane,book[0]);
+		thing[1] = new tPanel(242,40,contentPane,book[1]);
+		thing[2] = new tPanel(474,40,contentPane,book[2]);
+		thing[3] = new tPanel(706,40,contentPane,book[3]);
+		thing[4] = new tPanel(938,40,contentPane,book[4]);
+		thing[5] = new tPanel(10,308,contentPane,book[5]);
+		thing[6] = new tPanel(242,308,contentPane,book[6]);
+		thing[7] = new tPanel(474,308,contentPane,book[7]);
+		thing[8] = new tPanel(706,308,contentPane,book[8]);
+		thing[9] = new tPanel(938,308,contentPane,book[9]);
 		
 	}
 }

@@ -20,8 +20,9 @@ public class tPanel {
 	private JTextField nameDisplay;
 	private JTextField phoneDisplay;
 	private JTextField priceDisplay;
+	private Ticket paper;
 	
-	tPanel(int x, int y, JPanel contentPane){
+	tPanel(int x, int y, JPanel contentPane,Ticket input){
 		JLayeredPane ticketPanel = new JLayeredPane();
 		ticketPanel.setBounds(x, y, 222, 258);
 		contentPane.add(ticketPanel);
