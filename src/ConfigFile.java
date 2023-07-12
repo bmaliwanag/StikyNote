@@ -1,4 +1,3 @@
-package trom;
 
 /*
  * Class: Configuration File

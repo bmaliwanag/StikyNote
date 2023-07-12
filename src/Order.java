@@ -1,4 +1,3 @@
-package trom;
 
 /*
  * Class: Order

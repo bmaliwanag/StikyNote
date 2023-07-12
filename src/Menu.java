@@ -1,4 +1,3 @@
-package trom;
 import java.util.*;
 
 /*
