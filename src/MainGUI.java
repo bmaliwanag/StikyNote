@@ -26,15 +26,14 @@ import java.awt.event.ItemEvent;
 public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
-	private String[] status = {"Unpaid","Pending","Complete"};
-	private JTextField nameDisplay;
-	private JTextField phoneDisplay;
-	private JTextField priceDisplay;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Menu initialize = new Menu();	
+		Ticket[] roster = new Ticket[ConfigFile.maxTicketAmount];
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,7 +64,7 @@ public class MainGUI extends JFrame {
 		toolBar.setBounds(0, 0, 1256, 30);
 		contentPane.add(toolBar);
 		
-		tPanel[] thing = new tPanel[10];
+		tPanel[] thing = new tPanel[ConfigFile.maxTicketAmount];
 		thing[0] = new tPanel(10,40,contentPane);
 		thing[1] = new tPanel(242,40,contentPane);
 		thing[2] = new tPanel(474,40,contentPane);
