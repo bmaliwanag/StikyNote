@@ -1,6 +1,10 @@
-package trom;
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.Vector;
 
 /*
  * Class: FileLoader
@@ -14,19 +18,28 @@ import java.io.*;
 public class FileLoader {
 	
 	private Vector<Item> list = new Vector<Item>();
+	private File menu; 
+	private Scanner reader;
 	
 	public FileLoader(){ //Constructor
 		
 		String buffer = "",name = ""; float price = 0f;
+		
 	
 		try {
-			File menu = new File("menu.txt");
-			Scanner reader = new Scanner(menu);
+			this.menu = new File("menu.txt");
 			
 			if (menu.createNewFile()) {
 				System.out.println("New Menu file created!");
 			}
+		}	catch (IOException e) {
+				System.out.println("An error occurred.");
+				e.printStackTrace();
+		}
 			
+		try {
+			this.reader = new Scanner(menu);
+	
 			while(reader.hasNextLine()) {
 				buffer = reader.nextLine();
 				StringTokenizer st = new StringTokenizer(buffer,"/");
@@ -37,7 +50,7 @@ public class FileLoader {
 			
 			System.out.print("Menu loaded!");
 			reader.close();
-		} catch (IOException e) {
+		} catch (FileNotFoundException e){
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}

@@ -1,8 +1,3 @@
-package trom;
-//import java.io.*;
-import javax.swing.*;
-//import java.util.*;
-
 /*
  * Main class: Initializes Menu object and creates a main window.
  */

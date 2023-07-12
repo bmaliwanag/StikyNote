@@ -1,5 +1,3 @@
-package trom;
-
 /*
  * Class: Order
  * Not to be confused with Item. Order class is basically a Item with

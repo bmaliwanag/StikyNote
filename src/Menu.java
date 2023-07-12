@@ -1,6 +1,4 @@
-package trom;
-import java.util.*;
-
+import java.util.Vector;
 /*
  * Menu Class: This class houses all Items loaded from the FileLoader
  * class. 

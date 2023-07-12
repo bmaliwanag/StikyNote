@@ -1,5 +1,3 @@
-package trom;
-
 /*
  * Class: Configuration File
  * This class contains constants for the program

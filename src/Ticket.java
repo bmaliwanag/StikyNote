@@ -1,6 +1,4 @@
-package trom;
-import java.util.*;
-
+import java.util.Vector;
 /*
  * Class: Ticket
  * Ticket contains a vector of Orders and calculates subtotal and grandTotal. Identified

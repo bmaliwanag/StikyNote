@@ -1,5 +1,3 @@
-package trom;
-
 /*
  * Class: Item
  * Item is an object that contains the name of a dish and a price.
