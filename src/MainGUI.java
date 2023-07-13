@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
@@ -25,19 +27,22 @@ import java.awt.event.ItemEvent;
 
 public class MainGUI extends JFrame {
 
-	private JPanel contentPane;
+	public static JPanel contentPane;
+	public JTextField revenueDisplay;
+	public float grossRevenue = 0.00f;
+	private tPanel[] thing;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
 		Menu initialize = new Menu();	
-		Ticket[] roster = new Ticket[ConfigFile.maxTicketAmount];
+		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGUI frame = new MainGUI(roster);
+					MainGUI frame = new MainGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +54,7 @@ public class MainGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainGUI(Ticket[] book) {
+	public MainGUI() {
 		
 		setTitle("StikyNote v1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,17 +70,42 @@ public class MainGUI extends JFrame {
 		toolBar.setBounds(0, 0, 1256, 30);
 		contentPane.add(toolBar);
 		
-		tPanel[] thing = new tPanel[ConfigFile.maxTicketAmount];
-		thing[0] = new tPanel(10,40,contentPane,book[0]);
-		thing[1] = new tPanel(242,40,contentPane,book[1]);
-		thing[2] = new tPanel(474,40,contentPane,book[2]);
-		thing[3] = new tPanel(706,40,contentPane,book[3]);
-		thing[4] = new tPanel(938,40,contentPane,book[4]);
-		thing[5] = new tPanel(10,308,contentPane,book[5]);
-		thing[6] = new tPanel(242,308,contentPane,book[6]);
-		thing[7] = new tPanel(474,308,contentPane,book[7]);
-		thing[8] = new tPanel(706,308,contentPane,book[8]);
-		thing[9] = new tPanel(938,308,contentPane,book[9]);
+		JButton menuEditor = new JButton("Menu Editor");
+		menuEditor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == menuEditor) {
+					try {
+						MenuEditor dialog = new MenuEditor();
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception exe) {
+						exe.printStackTrace();
+					}
+				}
+			}
+		});
+		toolBar.add(menuEditor);
 		
+		thing = new tPanel[ConfigFile.maxTicketAmount];
+		thing[0] = new tPanel(10,40,contentPane);
+		thing[1] = new tPanel(242,40,contentPane);
+		thing[2] = new tPanel(474,40,contentPane);
+		thing[3] = new tPanel(706,40,contentPane);
+		thing[4] = new tPanel(938,40,contentPane);
+		thing[5] = new tPanel(10,308,contentPane);
+		thing[6] = new tPanel(242,308,contentPane);
+		thing[7] = new tPanel(474,308,contentPane);
+		thing[8] = new tPanel(706,308,contentPane);
+		thing[9] = new tPanel(938,308,contentPane);
+		
+		revenueDisplay = new JTextField();
+		revenueDisplay.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		revenueDisplay.setBackground(new Color(0, 0, 0));
+		revenueDisplay.setText(String.format("$%.2f", grossRevenue));
+		revenueDisplay.setHorizontalAlignment(SwingConstants.RIGHT);
+		revenueDisplay.setForeground(new Color(0, 255, 0));
+		revenueDisplay.setBounds(886, 589, 274, 74);
+		contentPane.add(revenueDisplay);
+		revenueDisplay.setColumns(10);
 	}
 }

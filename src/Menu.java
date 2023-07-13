@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Menu {
 	
-	public Vector<Item> menu = new Vector<Item>(); 
+	public static Vector<Item> menu = new Vector<Item>(); 
 	FileLoader data = new FileLoader();
 	
 	public Menu() {

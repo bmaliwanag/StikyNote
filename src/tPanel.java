@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class tPanel {
+public class tPanel{
 	
 	private String[] status = {"Unpaid","Pending","Complete"};
 	private JTextField nameDisplay;
@@ -22,7 +22,7 @@ public class tPanel {
 	private JTextField priceDisplay;
 	private Ticket paper;
 	
-	tPanel(int x, int y, JPanel contentPane,Ticket input){
+	tPanel(int x, int y, JPanel contentPane){
 		JLayeredPane ticketPanel = new JLayeredPane();
 		ticketPanel.setBounds(x, y, 222, 258);
 		contentPane.add(ticketPanel);
