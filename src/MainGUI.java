@@ -23,6 +23,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ItemEvent;
 
 public class MainGUI extends JFrame {
@@ -30,13 +32,14 @@ public class MainGUI extends JFrame {
 	public static JPanel contentPane;
 	public JTextField revenueDisplay;
 	public float grossRevenue = 0.00f;
+	public static Menu menu;
 	private tPanel[] thing;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
-		Menu initialize = new Menu();	
+		menu = new Menu();	
 		
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -55,6 +58,11 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				menu.update(menu.getMenu());
+			}
+		});
 		
 		setTitle("StikyNote v1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

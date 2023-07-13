@@ -9,14 +9,16 @@ import java.util.*;
 
 public class Menu {
 	
-	public static Vector<Item> menu = new Vector<Item>(); 
-	FileLoader data = new FileLoader();
+	private Vector<Item> menu = new Vector<Item>(); //pass by reference solution
+	public FileLoader data = new FileLoader();
 	
 	public Menu() {
 		menu = data.load();
 	}
 	
-	protected void finalize() {
+	public Vector<Item> getMenu(){return menu;}; //pass by value solution
+	public void update(Vector<Item> input) {
+		this.menu = input;
 		data.save(menu);
 	}
 }

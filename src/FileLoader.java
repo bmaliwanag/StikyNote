@@ -18,29 +18,31 @@ public class FileLoader {
 	public FileLoader(){ //Constructor
 		
 		String buffer = "",name = ""; float price = 0f;
-	
+		
 		try {
-			File menu = new File("menu.txt");
-			Scanner reader = new Scanner(menu);
-			
+			File menu = new File("menu.csv");
 			if (menu.createNewFile()) {
-				System.out.println("New Menu file created!");
+				System.out.println("Menu File not found! Creating one...");
+			} else {
+			    System.out.println("File already exists.");
 			}
-			
+			Scanner reader = new Scanner(menu);
+				
 			while(reader.hasNextLine()) {
 				buffer = reader.nextLine();
-				StringTokenizer st = new StringTokenizer(buffer,"/");
+				StringTokenizer st = new StringTokenizer(buffer,",");
 				name = st.nextToken(); price = Float.parseFloat(st.nextToken());
-				
+					
 				list.add(new Item(name,price));
 			}
-			
-			System.out.print("Menu loaded!");
+				
+			System.out.print("Menu loaded!\n");
 			reader.close();
+				
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
-		}
+		}	
 	}
 	
 	public Vector<Item> load() { //loads memory from inside the object to outside
@@ -51,15 +53,15 @@ public class FileLoader {
 		this.list = input;
 		
 		try {
-			FileWriter writer = new FileWriter("menu.txt");
+			FileWriter writer = new FileWriter("menu.csv");
 			
 			for(int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i).getName() + "/" + list.get(i).getPrice() + System.getProperty("line.separator"));
+				writer.write(list.get(i).getName() + "," + list.get(i).getPrice() + System.getProperty("line.separator"));
 			}
 			
 			writer.close();
 			
-			System.out.print("Menu Saved!");
+			System.out.print("Menu Saved!\n");
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
