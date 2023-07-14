@@ -160,13 +160,12 @@ public class MenuEditor extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Save");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						MainGUI.menu.update(list);
 					}
 				});
-				okButton.setActionCommand("Save");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
