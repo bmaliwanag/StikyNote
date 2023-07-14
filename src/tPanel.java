@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -20,14 +21,16 @@ public class tPanel{
 	private JTextField nameDisplay;
 	private JTextField phoneDisplay;
 	private JTextField priceDisplay;
-	private int index;
+	private JPanel ticket;
+	private JPanel defaultPanel;
+	private JComboBox<String> statusBox;
 	
-	tPanel(int x, int y, JPanel contentPane, Ticket[] ticketPad, int index){
+	tPanel(int x, int y, JPanel contentPane, Ticket[] pad, int index, Menu menu){
 		JLayeredPane ticketPanel = new JLayeredPane();
 		ticketPanel.setBounds(x, y, 222, 258);
 		contentPane.add(ticketPanel);
 		
-		JPanel ticket = new JPanel();
+		ticket = new JPanel();
 		ticket.setVisible(false);
 		ticketPanel.setLayer(ticket, 1);
 		ticket.setBackground(new Color(255, 255, 191));
@@ -86,6 +89,7 @@ public class tPanel{
 						nameDisplay.setText("");phoneDisplay.setText("");priceDisplay.setText("");
 						ticket.setVisible(false);
 						ticketPanel.getComponentsInLayer(0)[0].setVisible(true);
+						pad[index].clearTicket();
 					}
 				}
 			}
@@ -96,6 +100,22 @@ public class tPanel{
 		ticket.add(cancelButton);
 		
 		JButton editButton = new JButton("Edit");
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == editButton) {
+					try {
+						TicketBuilder dialog = new TicketBuilder(pad, index,menu);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+						nameDisplay.setText(pad[index].getName());
+						phoneDisplay.setText(pad[index].getNumber());
+						priceDisplay.setText(String.format("$%.2f",pad[index].getGrandTotal()));
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
 		editButton.setBackground(new Color(255, 255, 0));
 		editButton.setBounds(10, 186, 101, 31);
 		ticket.add(editButton);
@@ -127,7 +147,7 @@ public class tPanel{
 		completeButton.setBounds(10, 217, 202, 31);
 		ticket.add(completeButton);
 		
-		JComboBox<String> statusBox = new JComboBox<String>(status);
+		statusBox = new JComboBox<String>(status);
 		statusBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getSource() == statusBox) {
@@ -157,7 +177,7 @@ public class tPanel{
 		statusBox.setBounds(10, 111, 88, 21);
 		ticket.add(statusBox);
 		
-		JPanel defaultPanel = new JPanel();
+		defaultPanel = new JPanel();
 		ticketPanel.setLayer(defaultPanel, 0);
 		defaultPanel.setBounds(0, 0, 222, 258);
 		ticketPanel.add(defaultPanel);
@@ -167,9 +187,16 @@ public class tPanel{
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == createButton) {
-					defaultPanel.setVisible(false);
-					ticket.setVisible(true);
-					statusBox.setSelectedIndex(0);
+					try {
+						TicketBuilder dialog = new TicketBuilder(pad, index,menu);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+						nameDisplay.setText(pad[index].getName());
+						phoneDisplay.setText(pad[index].getNumber());
+						priceDisplay.setText(String.format("$%.2f",pad[index].getGrandTotal()));
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			}
 		});
@@ -178,4 +205,9 @@ public class tPanel{
 		defaultPanel.add(createButton);
 	}
 	
+	public void activateTicket() {
+		defaultPanel.setVisible(false);
+		ticket.setVisible(true);
+		statusBox.setSelectedIndex(0);
+	}
 }

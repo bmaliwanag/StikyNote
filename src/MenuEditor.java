@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -30,21 +32,29 @@ public class MenuEditor extends JDialog {
 	private DefaultTableModel model;
 	private JTextField nameInput;
 	private JTextField priceInput;
+	private final Vector<Item> oldList;
+	private final Vector<Vector<String>> oldData;
 	
-	public MenuEditor() {
-
-		Vector<Vector<String>> data = new Vector<Vector<String>>();
-		Vector<Item> list = MainGUI.menu.getMenu();
+	public MenuEditor(Menu menu) {
 		
-		//Converting Menu list to String
-		for(int rowID = 0; rowID < list.size(); rowID++) {//load Menu items
-			Vector<String> row = new Vector<>();
-			data.add(row);
-			data.get(rowID).add(list.get(rowID).getName());data.get(rowID).add(String.format("%.2f",list.get(rowID).getPrice()));
-		}
+		oldList = menu.getMenu();
+		oldData = menu.getStringMenu();
+		Vector<Vector<String>> data = oldData;
+		Vector<Item> list = oldList;
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int i = JOptionPane.showConfirmDialog(contentPanel,"Save Changes?","Order Completion",JOptionPane.YES_NO_OPTION);
+				if(i == 0) {
+					System.out.println("Bing!");
+					//menu.update(list);
+				}
+			}
+		});
 		
 		setTitle("Menu Editor");
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setBounds(100, 100, 797, 650);
@@ -64,10 +74,11 @@ public class MenuEditor extends JDialog {
 
 			      public void tableChanged(TableModelEvent e) {
 			          try {
-			        	  Float.parseFloat(data.get(table.getSelectedRow()).get(e.getColumn()));
+			        	  Float.parseFloat(data.get(table.getSelectedRow()).get(1));
+			        	  
 			          } catch (NumberFormatException nfe) {
 			        	  JOptionPane.showMessageDialog(contentPanel, "Please enter a valid price");
-			        	  data.get(table.getSelectedRow()).set(e.getColumn(),"");
+			        	  data.get(table.getSelectedRow()).set(1,"");
 			          }
 			      }
 			    });
@@ -118,12 +129,16 @@ public class MenuEditor extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					//push item to menu
-					list.add(new Item(nameInput.getText(),Float.parseFloat(priceInput.getText())));
-					Vector<String> row = new Vector<>();
-					row.add(nameInput.getText());row.add(priceInput.getText());
-					nameInput.setText("");priceInput.setText("");
-					data.add(row);
-					table.addNotify();
+					if(nameInput.getText().equals("") && priceInput.getText().equals("") ){
+						JOptionPane.showMessageDialog(getContentPane(), "Please enter a valid name and price!");
+					} else {
+						list.add(new Item(nameInput.getText(),Float.parseFloat(priceInput.getText())));
+						Vector<String> row = new Vector<>();
+						row.add(nameInput.getText());row.add(priceInput.getText());
+						nameInput.setText("");priceInput.setText("");
+						data.add(row);
+						table.addNotify();
+					}
 				} catch (NumberFormatException nfe) {
 					JOptionPane.showMessageDialog(contentPanel, "Please enter a valid price");
 					priceInput.setText("");
@@ -136,16 +151,19 @@ public class MenuEditor extends JDialog {
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
+					if(nameInput.getText().equals("") && priceInput.getText().equals("") ){
+						JOptionPane.showMessageDialog(getContentPane(), "Please enter a valid name and price!");
+					} else {
 					//insert new item into menu at index
-					list.insertElementAt(new Item(nameInput.getText(),Float.parseFloat(priceInput.getText())),table.getSelectedRow());
-					Vector<String> row = new Vector<>();
-					row.add(nameInput.getText());row.add(priceInput.getText());
-					nameInput.setText("");priceInput.setText("");
-					data.insertElementAt(row,table.getSelectedRow());
-					table.addNotify();
-					removeButton.setEnabled(false);
-		            insertButton.setEnabled(false);
+						list.insertElementAt(new Item(nameInput.getText(),Float.parseFloat(priceInput.getText())),table.getSelectedRow());
+						Vector<String> row = new Vector<>();
+						row.add(nameInput.getText());row.add(priceInput.getText());
+						nameInput.setText("");priceInput.setText("");
+						data.insertElementAt(row,table.getSelectedRow());
+						table.addNotify();
+						removeButton.setEnabled(false);
+			            insertButton.setEnabled(false);
+					}
 				} catch (NumberFormatException nfe) {
 					JOptionPane.showMessageDialog(contentPanel, "Please enter a valid price");
 					priceInput.setText("");
@@ -163,11 +181,11 @@ public class MenuEditor extends JDialog {
 				JButton okButton = new JButton("Save");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						MainGUI.menu.update(list);
+						//menu.update(list);
 					}
 				});
 				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				//getRootPane().setDefaultButton(okButton);
 			}
 		}
 	}

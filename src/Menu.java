@@ -17,7 +17,17 @@ public class Menu {
 	}
 	
 	public Vector<Item> getMenu(){return menu;}; //pass by value solution
+	public Vector<Vector<String>> getStringMenu(){
+		Vector<Vector<String>> list = new Vector<Vector<String>>(); 
+		for(int row = 0; row < menu.size(); row++) {
+			Vector<String> entry = new Vector<String>();
+			entry.add(menu.get(row).getName()); entry.add(String.format("%.2f", menu.get(row).getPrice()));
+			list.add(entry);
+		}
+		return list;
+	}
 	public void update(Vector<Item> input) {
+		//System.out.println("Menu Updated!");
 		this.menu = input;
 		data.save(menu);
 	}

@@ -22,6 +22,11 @@ public class Order extends Item{ //make this an extension of an item in the futu
 		this.note = note;
 	}
 	
+	public Order() {
+		super("",0.00f);
+		this.note = "";
+	}
+	
 	public Item getItem() {
 		return item;
 	}

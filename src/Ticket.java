@@ -21,23 +21,40 @@ public class Ticket {
 	private boolean completed = false;
 	
 	public void calculateTotals() {
+		subTotal = 0.00f;
 		for(int i = 0;i < list.size();i++) {
 			this.subTotal += list.get(i).getPrice();
 		}
-		this.taxFee = this.subTotal * ConfigFile.taxRate;
+		this.taxFee = this.subTotal * (ConfigFile.taxRate/100);
 		this.grandTotal = this.subTotal + this.taxFee;
 	}
 	
-	public Ticket(Vector<Order> input, String name, String number) {
+	public Vector<Vector<String>> getStringOrders(){
+		Vector<Vector<String>> paper = new Vector<Vector<String>>();
+		for(int i = 0; i < list.size(); i++) {
+			Vector<String> entry = new Vector<String>();
+			entry.add(list.get(i).getName()); entry.add(list.get(i).getNote()); entry.add(String.format("%.2f", list.get(i).getPrice()));
+			paper.add(entry);
+		}
+		return paper;
+	}
+	
+	/*public Ticket(Vector<Order> input, String name, String number) {
 		this.list = input;
 		this.name = name;
 		this.number = number;
 		calculateTotals();
 	}
+	*/
 	
+	public Ticket() {
+		this.list = new Vector<Order>();
+		this.name = "";
+		this.number = "";
+	}
 	//getters
 	public float getSubTotal() { return subTotal;}
-	public float gettaxFee() { return taxFee;}
+	public float getTaxFee() { return taxFee;}
 	public float getGrandTotal() {return grandTotal;}
 	public boolean getPaidStatus() {return paid;}
 	public boolean getCompletedStatus() {return completed;}
@@ -64,5 +81,11 @@ public class Ticket {
 	
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	
+	public void clearTicket() {
+		list.clear();
+		this.name = "";
+		this.number = "";
 	}
 }

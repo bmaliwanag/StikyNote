@@ -32,15 +32,19 @@ public class MainGUI extends JFrame {
 	public static JPanel contentPane;
 	public JTextField revenueDisplay;
 	public float grossRevenue = 0.00f;
-	public static Menu menu;
-	private tPanel[] thing;
+	private Menu menu = new Menu();
+	private static Ticket[] ticketPad = new Ticket[ConfigFile.maxTicketAmount];
+	public static tPanel[] thing;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
-		menu = new Menu();	
+		//menu = new Menu();	
 		
+		for(int x = 0; x < ConfigFile.maxTicketAmount; x++) {
+			ticketPad[x] = new Ticket();
+		}
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -83,7 +87,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == menuEditor) {
 					try {
-						MenuEditor dialog = new MenuEditor();
+						MenuEditor dialog = new MenuEditor(menu);
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 						dialog.setVisible(true);
 					} catch (Exception exe) {
@@ -95,16 +99,16 @@ public class MainGUI extends JFrame {
 		toolBar.add(menuEditor);
 		
 		thing = new tPanel[ConfigFile.maxTicketAmount];
-		thing[0] = new tPanel(10,40,contentPane);
-		thing[1] = new tPanel(242,40,contentPane);
-		thing[2] = new tPanel(474,40,contentPane);
-		thing[3] = new tPanel(706,40,contentPane);
-		thing[4] = new tPanel(938,40,contentPane);
-		thing[5] = new tPanel(10,308,contentPane);
-		thing[6] = new tPanel(242,308,contentPane);
-		thing[7] = new tPanel(474,308,contentPane);
-		thing[8] = new tPanel(706,308,contentPane);
-		thing[9] = new tPanel(938,308,contentPane);
+		thing[0] = new tPanel(10,40,contentPane,ticketPad,0,menu);
+		thing[1] = new tPanel(242,40,contentPane,ticketPad,1,menu);
+		thing[2] = new tPanel(474,40,contentPane,ticketPad,2,menu);
+		thing[3] = new tPanel(706,40,contentPane,ticketPad,3,menu);
+		thing[4] = new tPanel(938,40,contentPane,ticketPad,4,menu);
+		thing[5] = new tPanel(10,308,contentPane,ticketPad,5,menu);
+		thing[6] = new tPanel(242,308,contentPane,ticketPad,6,menu);
+		thing[7] = new tPanel(474,308,contentPane,ticketPad,7,menu);
+		thing[8] = new tPanel(706,308,contentPane,ticketPad,8,menu);
+		thing[9] = new tPanel(938,308,contentPane,ticketPad,9,menu);
 		
 		revenueDisplay = new JTextField();
 		revenueDisplay.setFont(new Font("Tahoma", Font.PLAIN, 35));
@@ -115,5 +119,8 @@ public class MainGUI extends JFrame {
 		revenueDisplay.setBounds(886, 589, 274, 74);
 		contentPane.add(revenueDisplay);
 		revenueDisplay.setColumns(10);
+	}
+	public Menu getMenu() {
+		return menu;
 	}
 }
