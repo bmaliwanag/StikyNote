@@ -57,19 +57,20 @@ public class TicketBuilder extends JDialog {
 	private JTextField itemField;
 	
 	@SuppressWarnings("serial")
-	public TicketBuilder(Ticket[] pad, int index,Menu menu) {
+	public TicketBuilder(Ticket[] pad, int index,Menu menu,boolean editable) {
 		setTitle("Ticket Builder");
 		
 		//initialization corner
 		Vector<Vector<String>> data = menu.getStringMenu();
 		Vector<Vector<String>> orderGrid = pad[index].getStringOrders();
-		Vector<Order> orders = new Vector<Order>();
+		Vector<Order> orders = pad[index].getOrders();
 		JTextArea noteField = new JTextArea();
-		JButton deleteEntry = new JButton("Remove Order");deleteEntry.setEnabled(false);
+		JButton deleteEntry = new JButton("Remove Order");deleteEntry.setEnabled(editable);
 		
 		priceField = new JTextField();
 		itemField = new JTextField();
 		JButton addOrder = new JButton("Add Order");
+		addOrder.setEnabled(editable);
 		
 		setAlwaysOnTop(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -79,7 +80,17 @@ public class TicketBuilder extends JDialog {
 		
 		Vector<String> ticketTitles = new Vector<String>();
 		ticketTitles.add("Item");ticketTitles.add("Note");ticketTitles.add("Price");
-		ticketModel = new DefaultTableModel(orderGrid,ticketTitles);
+		ticketModel = new DefaultTableModel(orderGrid,ticketTitles){
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+				if(!editable) {
+					return false;
+				}else {
+					return true;
+				}
+		    }
+		};
 		ticketTable = new JTable(ticketModel);
 		ticketTable.getModel().addTableModelListener(new TableModelListener() {
 
@@ -99,7 +110,8 @@ public class TicketBuilder extends JDialog {
 		    });
 		ticketTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				deleteEntry.setEnabled(true);
+				if(editable)
+					deleteEntry.setEnabled(true);
 			}
 		});
 		ticketTable.setBounds(75, 178, 423, 296);
@@ -133,11 +145,13 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(menuScroll);
 		
 		itemField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		itemField.setEnabled(editable);
 		itemField.setBounds(700, 511, 189, 22);
 		getContentPane().add(itemField);
 		
 		
 		priceField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		priceField.setEnabled(editable);
 		priceField.setBounds(899, 511, 143, 22);
 		getContentPane().add(priceField);
 		
@@ -173,12 +187,12 @@ public class TicketBuilder extends JDialog {
 			}
 		});
 		addOrder.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		addOrder.setEnabled(true);
 		addOrder.setBounds(1052, 511, 148, 141);
 		getContentPane().add(addOrder);
 	
 		
 		noteField.setLineWrap(true);
+		noteField.setEnabled(editable);
 		noteField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		noteField.setBounds(700, 543, 342, 109);
 		getContentPane().add(noteField);
@@ -200,6 +214,7 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(sTLabel);
 		
 		taxAmountDisplay = new JTextField();
+		taxAmountDisplay.setEditable(false);
 		taxAmountDisplay.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		taxAmountDisplay.setForeground(new Color(0, 255, 128));
 		taxAmountDisplay.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -215,6 +230,7 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(tLabel);
 		
 		grandTotalField = new JTextField();
+		grandTotalField.setEditable(false);
 		grandTotalField.setHorizontalAlignment(SwingConstants.RIGHT);
 		grandTotalField.setForeground(new Color(0, 255, 128));
 		grandTotalField.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -224,6 +240,10 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(grandTotalField);
 		grandTotalField.setColumns(10);
 		
+		subTotalDisplay.setText(String.format("$%.2f", pad[index].getSubTotal()));
+    	taxAmountDisplay.setText(String.format("$%.2f", pad[index].getTaxFee()));
+    	grandTotalField.setText(String.format("$%.2f", pad[index].getGrandTotal()));
+		
 		JLabel gTLabel = new JLabel("Grand Total:");
 		gTLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		gTLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -231,6 +251,7 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(gTLabel);
 		
 		JTextArea nameField = new JTextArea();
+		nameField.setEnabled(editable);
 		nameField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		nameField.setText(pad[index].getName());
 		nameField.setBounds(25, 481, 189, 22);
@@ -243,6 +264,7 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(nFieldLbl);
 		
 		JTextArea numberField = new JTextArea();
+		numberField.setEnabled(editable);
 		numberField.setText(pad[index].getNumber());
 		numberField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		numberField.setBounds(25, 529, 189, 22);
@@ -255,6 +277,7 @@ public class TicketBuilder extends JDialog {
 		getContentPane().add(numFieldLbl);
 		
 		JButton confirmButton = new JButton("Confirm");
+		confirmButton.setEnabled(editable);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nameField.getText().equals("") && numberField.getText().equals("") ){

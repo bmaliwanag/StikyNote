@@ -20,7 +20,7 @@ public class FileLoader {
 		String buffer = "",name = ""; float price = 0f;
 		
 		try {
-			File menu = new File("menu.csv");
+			File menu = new File("menu.txt");
 			if (menu.createNewFile()) {
 				System.out.println("Menu File not found! Creating one...");
 			} else {
@@ -30,7 +30,7 @@ public class FileLoader {
 				
 			while(reader.hasNextLine()) {
 				buffer = reader.nextLine();
-				StringTokenizer st = new StringTokenizer(buffer,",");
+				StringTokenizer st = new StringTokenizer(buffer,"/");
 				name = st.nextToken(); price = Float.parseFloat(st.nextToken());
 					
 				list.add(new Item(name,price));
@@ -53,10 +53,10 @@ public class FileLoader {
 		this.list = input;
 		
 		try {
-			FileWriter writer = new FileWriter("menu.csv");
+			FileWriter writer = new FileWriter("menu.txt");
 			
 			for(int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i).getName() + "," + list.get(i).getPrice() + System.getProperty("line.separator"));
+				writer.write(list.get(i).getName() + "/" + list.get(i).getPrice() + System.getProperty("line.separator"));
 			}
 			
 			writer.close();

@@ -53,6 +53,7 @@ public class Ticket {
 		this.number = "";
 	}
 	//getters
+	public Vector<Order> getOrders() {return list;}
 	public float getSubTotal() { return subTotal;}
 	public float getTaxFee() { return taxFee;}
 	public float getGrandTotal() {return grandTotal;}

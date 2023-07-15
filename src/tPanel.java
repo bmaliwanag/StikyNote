@@ -104,7 +104,7 @@ public class tPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == editButton) {
 					try {
-						TicketBuilder dialog = new TicketBuilder(pad, index,menu);
+						TicketBuilder dialog = new TicketBuilder(pad, index,menu,true);
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 						dialog.setVisible(true);
 						nameDisplay.setText(pad[index].getName());
@@ -122,6 +122,22 @@ public class tPanel{
 		
 		JButton viewButton = new JButton("View");
 		viewButton.setEnabled(false);
+		viewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == viewButton) {
+					try {
+						TicketBuilder dialog = new TicketBuilder(pad, index,menu,false);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+						nameDisplay.setText(pad[index].getName());
+						phoneDisplay.setText(pad[index].getNumber());
+						priceDisplay.setText(String.format("$%.2f",pad[index].getGrandTotal()));
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
 		viewButton.setBackground(new Color(102, 179, 255));
 		viewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,6 +151,9 @@ public class tPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == completeButton) {
 					if(JOptionPane.showConfirmDialog(contentPane,"Has the customer recieved their food?","Order Completion",JOptionPane.YES_NO_OPTION) == 0) {
+						MainGUI.grossRevenue += pad[index].getGrandTotal();
+						MainGUI.revenueDisplay.setText(String.format("$%.2f",MainGUI.grossRevenue));
+						pad[index].clearTicket();
 						nameDisplay.setText("");phoneDisplay.setText("");priceDisplay.setText("");
 						ticket.setVisible(false);
 						ticketPanel.getComponentsInLayer(0)[0].setVisible(true);
@@ -188,7 +207,7 @@ public class tPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == createButton) {
 					try {
-						TicketBuilder dialog = new TicketBuilder(pad, index,menu);
+						TicketBuilder dialog = new TicketBuilder(pad, index,menu,true);
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 						dialog.setVisible(true);
 						nameDisplay.setText(pad[index].getName());

@@ -30,8 +30,8 @@ import java.awt.event.ItemEvent;
 public class MainGUI extends JFrame {
 
 	public static JPanel contentPane;
-	public JTextField revenueDisplay;
-	public float grossRevenue = 0.00f;
+	public static JTextField revenueDisplay;
+	public static float grossRevenue = 0.00f;
 	private Menu menu = new Menu();
 	private static Ticket[] ticketPad = new Ticket[ConfigFile.maxTicketAmount];
 	public static tPanel[] thing;
