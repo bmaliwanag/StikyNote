@@ -25,7 +25,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-
+/*
+ * Menu Editor:
+ * Allows editing the Menu database.
+ */
 public class MenuEditor extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
@@ -42,13 +45,14 @@ public class MenuEditor extends JDialog {
 		Vector<Vector<String>> data = oldData;
 		Vector<Item> list = oldList;
 		
+		//performs one last save should the dialog box return "Yes"
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int i = JOptionPane.showConfirmDialog(contentPanel,"Save Changes?","Order Completion",JOptionPane.YES_NO_OPTION);
 				if(i == 0) {
-					System.out.println("Bing!");
-					//menu.update(list);
+					//System.out.println("Bing!");
+					menu.update(list);
 				}
 			}
 		});
@@ -71,7 +75,7 @@ public class MenuEditor extends JDialog {
 			table = new JTable(data,titles);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getModel().addTableModelListener(new TableModelListener() {
-
+				//input validation using parse
 			      public void tableChanged(TableModelEvent e) {
 			          try {
 			        	  Float.parseFloat(data.get(table.getSelectedRow()).get(1));
@@ -92,7 +96,6 @@ public class MenuEditor extends JDialog {
 			contentPanel.add(table);
 		}
 		contentPanel.setLayout(null);
-		
 		
 		removeButton.setEnabled(false);
 		removeButton.addActionListener(new ActionListener() {
@@ -124,6 +127,7 @@ public class MenuEditor extends JDialog {
 		priceInput.setBounds(417, 457, 132, 21);
 		contentPanel.add(priceInput);
 		
+		//appends item to end of the list.
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,6 +152,7 @@ public class MenuEditor extends JDialog {
 		addButton.setBounds(559, 457, 74, 21);
 		contentPanel.add(addButton);
 		
+		//inserts item into selected cell
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -170,6 +175,7 @@ public class MenuEditor extends JDialog {
 				}
 			}
 		});
+		
 		insertButton.setEnabled(false);
 		insertButton.setBounds(559, 488, 74, 21);
 		contentPanel.add(insertButton);
@@ -181,7 +187,7 @@ public class MenuEditor extends JDialog {
 				JButton okButton = new JButton("Save");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//menu.update(list);
+						menu.update(list);
 					}
 				});
 				buttonPane.add(okButton);

@@ -1,3 +1,10 @@
+Eggroll/2.5
+Pork Dumplings/6.95
+Pork Sho Mai/6.95
+Shrimp Rolls/6.95
+Crab Rangoons/6.95
+Fried Won Tons/5.95
+Flaming Tray/14.0
 1. Happy Family/14.95
 2. Sizzling Meat & Vegetables/14.95
 3. Sizzling Seafood Go Ba/15.95
@@ -24,3 +31,25 @@
 24. Chicken & Cashew/11.95
 25. *Chicken & Red Pepper/11.95
 26. *Szechuan Chicken/11.95
+27. Sweet & Sour Chicken/12.95
+28. Lemon Chicken/12.95
+29. *Hunan Chicken/11.95
+30. *Garlic Chicken/11.95
+30. *Garlic Shrimp/13.95
+30. *Garlic Beef/13.95
+31. *Chicken & Mixed Vegetables/11.95
+32. Chicken & Broccoli/11.95
+33. Moo Shi Chicken/12.95
+34. *General Tso's Chicken/12.95
+35. *Jalapeno Chicken/11.95
+36. Cripsy Duck/18.95
+37. /0.0
+38. Beef & Broccoli/13.95
+39. Beef & Snow Peas/14.95
+40. *Imperial Beef/14.95
+41. Beef & Pepper/13.95
+42. Mongolian Beef/13.95
+43. *Szechuan Beef/13.95
+44. Beef & Mushroom/13.95
+45. *Orange Beef/14.95
+46. Mushroom Chicken/13.95

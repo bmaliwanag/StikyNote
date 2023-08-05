@@ -16,10 +16,7 @@ import java.awt.Dialog.ModalityType;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JList;
+
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 
@@ -30,21 +27,21 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JSplitPane;
+
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
+
 import java.awt.Font;
-import javax.swing.JToggleButton;
-import javax.swing.JRadioButton;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-
+/*
+ * TicketBuilder System:
+ * Provides user with a blank Order list on left. Orders can be
+ * created by the Item list on the right side or by writing a
+ * custom order in the bottom right fields.
+ */
 public class TicketBuilder extends JDialog {
 	private DefaultTableModel menuModel;
 	private DefaultTableModel ticketModel;
@@ -72,7 +69,7 @@ public class TicketBuilder extends JDialog {
 		JButton addOrder = new JButton("Add Order");
 		addOrder.setEnabled(editable);
 		
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setBounds(100, 100, 1250, 700);
@@ -136,10 +133,12 @@ public class TicketBuilder extends JDialog {
 		menuTable.setBounds(683, 118, 543, 296);
 		getContentPane().add(menuTable);
 		
+		//scroller for the ticket
 		JScrollPane ticketScroll = new JScrollPane(ticketTable);
 		ticketScroll.setBounds(25, 25, 500, 390);
 		getContentPane().add(ticketScroll);
 		
+		//scroller for the menu database
 		JScrollPane menuScroll = new JScrollPane(menuTable);
 		menuScroll.setBounds(700, 25, 500, 476);
 		getContentPane().add(menuScroll);
@@ -148,7 +147,6 @@ public class TicketBuilder extends JDialog {
 		itemField.setEnabled(editable);
 		itemField.setBounds(700, 511, 189, 22);
 		getContentPane().add(itemField);
-		
 		
 		priceField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		priceField.setEnabled(editable);
@@ -190,7 +188,7 @@ public class TicketBuilder extends JDialog {
 		addOrder.setBounds(1052, 511, 148, 141);
 		getContentPane().add(addOrder);
 	
-		
+		//note box for Order creation
 		noteField.setLineWrap(true);
 		noteField.setEnabled(editable);
 		noteField.setFont(new Font("Tahoma", Font.PLAIN, 13));

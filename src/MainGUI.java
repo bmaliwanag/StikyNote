@@ -1,31 +1,25 @@
 import java.awt.EventQueue;
-import javax.swing.JOptionPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import java.awt.CardLayout;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.border.BevelBorder;
+
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
+
 import javax.swing.SwingConstants;
 
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JLayeredPane;
-import java.awt.event.ItemListener;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ItemEvent;
+
 
 public class MainGUI extends JFrame {
 

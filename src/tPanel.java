@@ -15,6 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/*
+ * tPanel class:
+ * This class provides ticket objects to put
+ * into the main GUI system. Outputs customer
+ * name and phone number and amount due.
+ */
 public class tPanel{
 	
 	private String[] status = {"Unpaid","Pending","Complete"};
@@ -81,6 +87,7 @@ public class tPanel{
 		priceDisplay.setBounds(108, 111, 104, 34);
 		ticket.add(priceDisplay);
 		
+		//cancels the order
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -99,6 +106,7 @@ public class tPanel{
 		cancelButton.setBounds(10, 155, 202, 31);
 		ticket.add(cancelButton);
 		
+		//edit button becomes enabled when the order is incomplete.
 		JButton editButton = new JButton("Edit");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,6 +128,8 @@ public class tPanel{
 		editButton.setBounds(10, 186, 101, 31);
 		ticket.add(editButton);
 		
+		//View button allows to view all details of ticket in Ticket Editor
+		//Sets TicketEditor to read only.
 		JButton viewButton = new JButton("View");
 		viewButton.setEnabled(false);
 		viewButton.addActionListener(new ActionListener() {
@@ -146,6 +156,7 @@ public class tPanel{
 		viewButton.setBounds(111, 186, 101, 31);
 		ticket.add(viewButton);
 		
+		//Same as delete but adds cost value to total gross value
 		JButton completeButton = new JButton("Cash In");
 		completeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -166,6 +177,7 @@ public class tPanel{
 		completeButton.setBounds(10, 217, 202, 31);
 		ticket.add(completeButton);
 		
+		//dropdown for choosing adequate status
 		statusBox = new JComboBox<String>(status);
 		statusBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -202,6 +214,7 @@ public class tPanel{
 		ticketPanel.add(defaultPanel);
 		defaultPanel.setLayout(null);
 		
+		//creates a new ticket.
 		JButton createButton = new JButton("New Ticket");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
