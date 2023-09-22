@@ -1,55 +1,84 @@
-Eggroll/2.5
-Pork Dumplings/6.95
-Pork Sho Mai/6.95
-Shrimp Rolls/6.95
-Crab Rangoons/6.95
-Fried Won Tons/5.95
-Flaming Tray/14.0
-1. Happy Family/14.95
-2. Sizzling Meat & Vegetables/14.95
-3. Sizzling Seafood Go Ba/15.95
-4. *House Beef/16.95
-5. *Kung Pao Four Delight/17.95
-6. *Hunan Shrimp & Scallop/14.95
-7. *Hunan Chicken & Shrimp/13.95
-8. *Hunan Beef & Scallop/15.95
-9. *Hunan Chicken & Beef/13.95
-10. *Hunan, Chicken, Shrimp & Scallop/15.95
-11. *Hunan Triplet/17.95
-12. *Kung Pao Sanshien /14.95
-13. *Hunan Sister/14.95
-14. House Sesame Beef/16.95
-15. Steamed Whole Fish/26.95
-16. *Crispy Fish in Sweet & Sour Sauce/26.95
-17. *Taiwan Steak/16.95
-18. Crispy Shrimp in Chinese BBQ Sauce/15.95
-19. Almond Chicken/11.95
-20. Chicken & Mushroom/11.95
-21. Chicken & Snow Peas/12.95
-22. Curry Chicken/11.95
-23. *Kung Pao Chicken/11.95
-24. Chicken & Cashew/11.95
-25. *Chicken & Red Pepper/11.95
-26. *Szechuan Chicken/11.95
-27. Sweet & Sour Chicken/12.95
-28. Lemon Chicken/12.95
-29. *Hunan Chicken/11.95
-30. *Garlic Chicken/11.95
-30. *Garlic Shrimp/13.95
-30. *Garlic Beef/13.95
-31. *Chicken & Mixed Vegetables/11.95
-32. Chicken & Broccoli/11.95
-33. Moo Shi Chicken/12.95
-34. *General Tso's Chicken/12.95
-35. *Jalapeno Chicken/11.95
-36. Cripsy Duck/18.95
-37. /0.0
-38. Beef & Broccoli/13.95
-39. Beef & Snow Peas/14.95
-40. *Imperial Beef/14.95
-41. Beef & Pepper/13.95
-42. Mongolian Beef/13.95
-43. *Szechuan Beef/13.95
-44. Beef & Mushroom/13.95
-45. *Orange Beef/14.95
-46. Mushroom Chicken/13.95
+Eggroll|2.5
+Pork Dumplings|6.95
+Pork Sho Mai|6.95
+Shrimp Rolls|6.95
+Crab Rangoons|6.95
+Fried Won Tons|5.95
+Flaming Tray|14.0
+1. Happy Family|14.95
+2. Sizzling Meat & Vegetables|14.95
+3. Sizzling Seafood Go Ba|15.95
+4. *House Beef|16.95
+5. *Kung Pao Four Delight|17.95
+6. *Hunan Shrimp & Scallop|14.95
+7. *Hunan Chicken & Shrimp|13.95
+8. *Hunan Beef & Scallop|15.95
+9. *Hunan Chicken & Beef|13.95
+10. *Hunan, Chicken, Shrimp & Scallop|15.95
+11. *Hunan Triplet|17.95
+12. *Kung Pao Sanshien |14.95
+13. *Hunan Sister|14.95
+14. House Sesame Beef|16.95
+15. Steamed Whole Fish|26.95
+16. *Crispy Fish in Sweet & Sour Sauce|26.95
+17. *Taiwan Steak|16.95
+18. Crispy Shrimp in Chinese BBQ Sauce|15.95
+19. Almond Chicken|11.95
+20. Chicken & Mushroom|11.95
+21. Chicken & Snow Peas|12.95
+22. Curry Chicken|11.95
+23. *Kung Pao Chicken|11.95
+24. Chicken & Cashew|11.95
+25. *Chicken & Red Pepper|11.95
+26. *Szechuan Chicken|11.95
+27. Sweet & Sour Chicken|12.95
+28. Lemon Chicken|12.95
+29. *Hunan Chicken|11.95
+30. *Garlic Chicken|11.95
+30. *Garlic Shrimp|13.95
+30. *Garlic Beef|13.95
+31. *Chicken & Mixed Vegetables|11.95
+32. Chicken & Broccoli|11.95
+33. Moo Shi Chicken|12.95
+34. *General Tso's Chicken|12.95
+35. *Jalapeno Chicken|11.95
+36. Cripsy Duck|18.95
+37. |0.0
+38. Beef & Broccoli|13.95
+39. Beef & Snow Peas|14.95
+40. *Imperial Beef|14.95
+41. Beef & Pepper|13.95
+42. Mongolian Beef|13.95
+43. *Szechuan Beef|13.95
+44. Beef & Mushroom|13.95
+45. *Orange Beef|14.95
+46. Mushroom Chicken|13.95
+47. Beef & Chinese Mushroom|13.95
+48. Ming's Beef|13.95
+49. *Beef in hinese Tea Sauce|13.95
+50. *Hunan Beef|13.95
+51. Onion Beef|13.95
+52. Shrimp & Mixed Vegetables in White Sauce|13.95
+53. *Sezchuan Shrimp|13.95
+54. *Hunan Shrimp|13.95
+55. *Kung Pao Shrimp|13.95
+56. Shrimp & Snow Peas|14.95
+57. Shrimp in Lobster Sauce|13.95
+58. *Shrimp in Chinese Tea Sauce|13.95
+59. Shrimp & Cashew Nuts|13.95
+60. Scallops & Mixed Vegetables|13.95
+61. Crispy Fish|13.95
+62. Zucchini & Mushrooms|10.95
+63. Sauteed Vegetables|10.95
+64. Chinese Mushroo & Snow Peas|11.95
+65. Szechuan  Vegetables|10.95
+65. Szechuan Vegetables with Tofu|12.95
+66. *Vegetables in Hunan Sauce|10.95
+67. House Tofu|15.95
+68. *Tofu Family Style|15.95
+69. *Tofu In Hot Sauce|10.95
+69. *Tofu in Hot Sauce with Pork|12.95
+70. Chicken or Pork Cho Suey|12.95
+70. Beef or Shrimp Cho Suey|13.95
+70. Combination Cho Suey|14.95
+71. Egg Foo Young with Veggies|13.95

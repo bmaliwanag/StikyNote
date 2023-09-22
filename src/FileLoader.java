@@ -30,7 +30,7 @@ public class FileLoader {
 				
 			while(reader.hasNextLine()) {
 				buffer = reader.nextLine();
-				StringTokenizer st = new StringTokenizer(buffer,"/");
+				StringTokenizer st = new StringTokenizer(buffer,"|");
 				name = st.nextToken(); price = Float.parseFloat(st.nextToken());
 					
 				list.add(new Item(name,price));
@@ -56,7 +56,7 @@ public class FileLoader {
 			FileWriter writer = new FileWriter("menu.txt");
 			
 			for(int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i).getName() + "/" + list.get(i).getPrice() + System.getProperty("line.separator"));
+				writer.write(list.get(i).getName() + "|" + list.get(i).getPrice() + System.getProperty("line.separator"));
 			}
 			
 			writer.close();
