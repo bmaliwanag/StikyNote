@@ -3,7 +3,7 @@ import java.util.Vector;
  * Class: Ticket
  * Ticket contains a vector of Orders and calculates subtotal and grandTotal. Identified
  * by name and/or number.
- * @param Vector<Item> list
+ * @param Vector<Order> list
  * @param String name
  * @param String number
  */
