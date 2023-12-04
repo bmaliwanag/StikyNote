@@ -39,13 +39,12 @@ public class Ticket {
 		return paper;
 	}
 	
-	/*public Ticket(Vector<Order> input, String name, String number) {
+	public Ticket(Vector<Order> input, String name, String number) {
 		this.list = input;
 		this.name = name;
 		this.number = number;
 		calculateTotals();
 	}
-	*/
 	
 	public Ticket() {
 		this.list = new Vector<Order>();
